@@ -1,4 +1,4 @@
-package RC6;
+package com.example.chat.RC6;
 
 public interface Cipher {
     int getSizeBlockTextInBits();

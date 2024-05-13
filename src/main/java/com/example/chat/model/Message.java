@@ -1,4 +1,4 @@
-package model;
+package com.example.chat.model;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;

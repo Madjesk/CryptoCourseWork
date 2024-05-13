@@ -1,8 +1,8 @@
-package server;
+package com.example.chat.server;
 
-import DiffHelman.DiffHellman;
-import kafka.KafkaWriter;
-import model.Message;
+import com.example.chat.DiffHelman.DiffHellman;
+import com.example.chat.kafka.KafkaWriter;
+import com.example.chat.model.Message;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.math.BigInteger;

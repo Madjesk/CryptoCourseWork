@@ -1,0 +1,62 @@
+.login-page {
+    background-color: var(--lumo-contrast-5pct);
+    display: flex;
+    justify-content: center;
+    padding: var(--lumo-space-l);
+    align-items: center;
+    height: 100vh;
+    background: #f0f0f0; /* Просто цвет в качестве фона */
+}
+
+.form-wrapper {
+    border: 2px solid #0070f3; /* Основной цвет для рамки */
+    padding: 20px;
+    border-radius: 10px; /* Скругление углов рамки */
+    display: flex;
+    flex-direction: column; /* Элементы будут располагаться в колонне */
+    align-items: center; /* Выравнивание элементов по центру */
+}
+
+/* Стилизация текста */
+input[type="text"], input[type="password"], select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    /*border: 2px solid #0070f3; !* Основной цвет для текстовых полей *!*/
+    border-radius: 4px;
+}
+
+/* Стилизация кнопки */
+button {
+    margin-top: 10px; /* Отступ между кнопкой и предыдущим элементом */
+    background-color: #0070f3; /* Основной цвет кнопки */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3; /* Темнее при наведении */
+}
+
+/* Стилизация dropdown */
+.select-css {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    border: 2px solid #0070f3; /* Основной цвет для dropdown */
+    border-radius: 4px;
+    appearance: none;
+    background-color: #fff; /* Белый цвет фона */
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 24px 24px;
+    padding-right: 32px;
+    font-size: 16px;
+}

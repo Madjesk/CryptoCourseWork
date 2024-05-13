@@ -1,4 +1,4 @@
-package DiffHelman;
+package com.example.chat.DiffHelman;
 
 import java.math.BigInteger;
 import java.util.Random;

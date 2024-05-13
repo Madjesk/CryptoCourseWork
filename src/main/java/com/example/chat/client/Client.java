@@ -1,16 +1,16 @@
-package client;
+package com.example.chat.client;
 
-import RC6.Cipher;
+import com.example.chat.RC6.Cipher;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import kafka.KafkaWriter;
+import com.example.chat.kafka.KafkaWriter;
 import lombok.extern.slf4j.Slf4j;
-import model.Message;
+import com.example.chat.model.Message;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
-import server.Server;
+import com.example.chat.server.Server;
 
 import java.math.BigInteger;
 import java.time.Duration;

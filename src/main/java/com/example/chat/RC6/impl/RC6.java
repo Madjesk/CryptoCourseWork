@@ -1,6 +1,6 @@
-package RC6.impl;
+package com.example.chat.RC6.impl;
 
-import RC6.Cipher;
+import com.example.chat.RC6.Cipher;
 
 public class RC6 implements Cipher {
     @Override
