@@ -1,5 +1,8 @@
 package com.example.chat.pages;
 
+import com.example.chat.entity.UserData;
+import com.example.chat.server.Server;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.combobox.ComboBox;
@@ -11,7 +14,6 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
-//import ru.mai.javachatservice.server.ChatServer;
 
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.button.Button;
@@ -28,33 +30,64 @@ import com.vaadin.flow.router.Route;
 @Route("")
 @CssImport("./style.css")
 public class LoginPage extends VerticalLayout {
-
-    public LoginPage() {
+    private TextField loginField;
+    private PasswordField passwordField;
+    private ComboBox<String> encryptionAlgorithmComboBox;
+    private Server server;
+//
+    public LoginPage(Server server) {
+        this.server = server;
         // Задаем классы стилей для элементов
         addClassName("login-page");
 
-        TextField loginField = new TextField("Логин");
-        PasswordField passwordField = new PasswordField("Пароль");
+        loginField = new TextField("Логин");
+        passwordField = new PasswordField("Пароль");
 
-        ComboBox<String> encryptionAlgorithmComboBox = new ComboBox<>("Алгоритм шифрования");
+        encryptionAlgorithmComboBox = new ComboBox<>("Алгоритм шифрования");
         encryptionAlgorithmComboBox.setItems("RC6", "Serpent");
         encryptionAlgorithmComboBox.setValue("RC6");
 
         Button loginButton = new Button("Войти", this::onLoginButtonClick);
 
-        // Обертка div
         Div formWrapper = new Div();
         formWrapper.addClassName("form-wrapper");
 
-        // Добавляем элементы в обертку
         formWrapper.add(loginField, passwordField, encryptionAlgorithmComboBox, loginButton);
 
-        // Добавляем обертку на страницу
         add(formWrapper);
     }
 
     private void onLoginButtonClick(ClickEvent<Button> event) {
-        Notification.show("Logging in...");
+        String username = loginField.getValue();
+        String nameAlgorithm = encryptionAlgorithmComboBox.getValue();
+        String password = passwordField.getValue();
+
+        if (username == null || username.isEmpty()) {
+            Notification.show("Логин не может быть пустым");
+            return;
+        }
+
+        if (password == null || password.isEmpty()) {
+            Notification.show("Пароль не может быть пустым");
+            return;
+        }
+
+        if (nameAlgorithm == null || nameAlgorithm.isEmpty()) {
+            Notification.show("Алгоритм шифрования не выбран");
+            return;
+        }
+
+        try {
+            UserData userData = server.login(username, nameAlgorithm);
+            if(userData != null) {
+                Notification.show("Logging in as " + username + " using " + nameAlgorithm + " encryption.");
+                UI.getCurrent().navigate(String.valueOf(userData.getId()));
+            } else {
+                Notification.show("Не удалось выполнить вход");
+            }
+        } catch (Exception e) {
+            Notification.show("Login failed: " + e.getMessage());
+        }
     }
 }
 
